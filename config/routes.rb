@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'tasks/index'
-  get 'tasks/show'
-  get 'tasks/create'
-  get 'tasks/update'
-  get 'tasks/destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'welcome#welcome'
 
@@ -12,5 +7,13 @@ Rails.application.routes.draw do
     delete 'sessions', to: 'sessions#destroy'
   end
 
-  resources :users, only: %i[index show create update destroy]
+  resources :users, only: %i[index show create update destroy] do
+    scope module: 'users' do
+      resources :tasks, only: %i[index show create]
+    end
+  end
+
+  scope module: 'users' do
+    resources :tasks, only: %i[update destroy]
+  end
 end

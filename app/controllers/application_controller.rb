@@ -110,28 +110,8 @@ class ApplicationController < ActionController::Base
     render json: { error: exception.message }, status: :not_found
   end
 
-  # def if_user_not_found
-  #   render json: { error: 'current user not found' }, status: :not_found
-  # end
-
-  def if_current_user_not_verified
-    render json: { error: 'user not verified' }, status: :unprocessable_entity
-  end
-
-  def if_current_user_blocked
-    render json: { error: 'user is blocked' }, status: :unauthorized
-  end
-
   def if_token_expired
     render json: { error: 'token has expired' }, status: :unprocessable_entity
-  end
-
-  def if_password_token_expired
-    render json: { error: 'password token has expired' }, status: :unprocessable_entity
-  end
-
-  def if_email_verification_token_expired
-    render json: { error: 'email verification token has expired' }, status: :unprocessable_entity
   end
 
   def if_current_user_is_not_allowed

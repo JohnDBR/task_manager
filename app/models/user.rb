@@ -34,6 +34,7 @@ class User < ApplicationRecord
 
   # Relations
   has_many :tokens, dependent: :destroy
+  has_many :tasks, dependent: :destroy
 
   # Attributes
   def user?

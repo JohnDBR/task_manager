@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     authorize User
-    users = User.all.includes(:role)
+    users = User.all
     render_ok users
   end
 
@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    authorize @user
     if @user.save(context: :account_setup)
       # set_up_user
       # associater = FileAssociation.new

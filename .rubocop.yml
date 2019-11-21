@@ -1,0 +1,114 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.6.1
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+    - 'bin/**/*'
+    - 'config.ru'
+    - 'config/spring.rb'
+    - 'vendor/**/*'
+
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+
+Metrics/MethodLength:
+  Max: 40
+  # Exclude: # Method length excluded files
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/routes.rb'
+    - 'app/models/concerns/**'
+    - 'app/controllers/concerns/**'
+    - 'config/environments/development.rb'
+    - 'config/environments/test.rb'
+    - 'config/environments/production.rb'
+
+# Metrics/PerceivedComplexity:
+#   Exclude: # Percieved Complexity excluded files
+
+Metrics/AbcSize:
+  Max: 19
+
+# Metrics/CyclomaticComplexity:
+#   Exclude:
+#   - 'app/models/user.rb'
+
+Style/ClassAndModuleChildren:
+  #
+  # Basically there are two different styles:
+  #
+  # `nested` - have each child on a separate line
+  #   class Foo
+  #     class Bar
+  #     end
+  #   end
+  #
+  # `compact` - combine definitions as much as possible
+  #   class Foo::Bar
+  #   end
+  #
+  # The compact style is only forced, for classes or modules with one child.
+  EnforcedStyle: compact
+  # SupportedStyles:
+  #   - nested
+  #   - compact
+  Exclude:
+    - 'config/application.rb'
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - 'Rakefile'
+    - 'Gemfile'
+    - 'config/environments/production.rb'
+    - 'config/environments/development.rb':
+    - 'config/environments/test.rb'
+    - 'config/initializers/backtrace_silencers.rb'
+    - 'config/initializers/filter_parameter_logging.rb'
+    - 'config/initializers/inflections.rb'
+    - 'config/initializers/mime_types.rb'
+    - 'config/initializers/wrap_parameters.rb'
+    - 'config/puma.rb'
+    - 'config/application.rb'
+    - 'db/seeds.rb'
+
+Naming/PredicateName:
+  Exclude:
+    - 'spec/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - 'config/application.rb'
+    - 'spec/spec_helper.rb'
+    - 'app/controllers/application_controller.rb'
+    - 'app/models/application_record.rb'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/helpers/**/*'
+    - 'app/models/**/*'
+    - 'spec/**/*'
+
+Style/NumericPredicate:
+  Exclude:
+    - 'spec/**/*'
+
+Lint/UselessAssignment:
+  Exclude:
+    - 'app/mailers/*'
+    - 'spec/**/*'
+
+RSpec/NestedGroups:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
+# Metrics/ModuleLength:
+#   Exclude:

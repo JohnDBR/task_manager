@@ -5,13 +5,17 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV["TM_POSTGRESQL_DB_USERNAME"] %> #To fully use environment files you should run source ~/.bashrc
+  password: <%= ENV["TM_POSTGRESQL_DB_PASSWORD"] %> 
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
   database: db/development.sqlite3
+  host: <%= ENV["TM_DEV_DB_HOST"] %> #Change it to use an external db or a service like RDS
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,7 +23,10 @@ development:
 test:
   <<: *default
   database: db/test.sqlite3
+  host: <%= ENV["TM_TEST_DB_HOST"] %> #Change it to use an external db or a service like RDS
 
 production:
   <<: *default
   database: db/production.sqlite3
+  host: <%= ENV["TM_PROD_DB_HOST"] %> #Change it to use an external db or a service like RDS
+  port: <%= ENV['TM_PROD_DB_PORT'] %>

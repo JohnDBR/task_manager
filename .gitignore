@@ -29,3 +29,20 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# If the files were on a previous commit you have to run 'git rm --cached FILE' to start ignoring them...
+# Gemfile.lock 
+# db/schema.rb
+db/*.data
+
+# Ignore the storage files
+storage/
+
+# Developments files while executing on EC2 should be ignored
+nohup.out
+2003
+2004
+2005
+
+# Ignore the vs code settings
+/.vscode/*

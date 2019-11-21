@@ -20,13 +20,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save(context: :account_setup)
-      # set_up_user
-      # associater = FileAssociation.new
-      # if associater.create_cover_picture(params, @user) || associater.empty_params? # associater.allowed?
       render_created @user
-      # else
-      #   render_unprocessable_entity errors: associater.errors, user: @user
-      # end
     else
       render_unprocessable_entity @user.errors
     end
@@ -37,12 +31,7 @@ class UsersController < ApplicationController
     authorize @user
     @user.assign_attributes(user_params)
     if @user.save(context: :account_update)
-      # associater = FileAssociation.new
-      # if associater.create_cover_picture(params, @user) || associater.empty_params? # associater.allowed?
       render_ok @user
-      # else
-      #   render_unprocessable_entity errors: associater.errors, user: @user
-      # end
     else
       render_unprocessable_entity @user.errors
     end

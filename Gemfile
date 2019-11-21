@@ -30,6 +30,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Active Model Serializers to make custom jsons easily
 gem 'active_model_serializers'
 
+# Use active storage validator to restrict the type of files received
+gem 'activestorage-validator'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

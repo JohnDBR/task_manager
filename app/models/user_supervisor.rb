@@ -1,0 +1,2 @@
+class UserSupervisor < ApplicationRecord
+end

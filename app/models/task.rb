@@ -13,7 +13,7 @@
 
 class Task < ApplicationRecord
   # Validations
-  validates :name, :description, :start_time, :end_time, :high_priority, :category, presence: true, on: :create
+  validates :name, :description, :start_time, :end_time, :category, presence: true, on: :create
 
   # Callbacks
   before_validation :parse_datetime

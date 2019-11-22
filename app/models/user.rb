@@ -17,14 +17,14 @@ class User < ApplicationRecord
   has_secure_password
 
   # Validations
-  validates :name, :middlename, :lastname, :birthdate, :gender, presence: true, on: :account_setup
+  validates :name, :birthdate, :gender, presence: true, on: :account_setup # :middlename, :lastname
   validates :email, :password, :role, presence: true, on: :account_setup
   validates :image, blob: {
     content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..5.megabytes
   }, on: :account_setup
   validates :email, uniqueness: true, on: :account_setup
 
-  validates :name, :middlename, :lastname, :birthdate, :gender, presence: true, on: :account_update
+  validates :name, :birthdate, :gender, presence: true, on: :account_update # :middlename, :lastname
   validates :email, :password, :role, presence: true, on: :account_update
   validates :image, blob: {
     content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..5.megabytes

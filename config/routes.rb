@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    resources :tasks, only: %i[show]
+    resources :tasks, only: %i[show update]
   end
 
   resources :users, only: %i[index show create update destroy] do
     get 'users_supervised', to: 'supervisors#index'
     post 'supervisor', to: 'supervisors#create'
     scope module: 'users' do
-      resources :tasks, only: %i[index create]
+      resources :tasks, only: %i[index create update]
       get 'categories/:category/tasks', to: 'tasks/categories#index'
     end
   end

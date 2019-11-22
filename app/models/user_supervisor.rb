@@ -4,8 +4,8 @@ class UserSupervisor < ApplicationRecord
 
   # Callbacks
   # Relations
-  belongs_to :supervisor, class_name: User, foreign_key: :supervisor_id
-  belong_to :supervised, class_name: User, foreign_key: :user_id
+  belongs_to :supervisor, class_name: 'User', foreign_key: :supervisor_id
+  belongs_to :supervised, class_name: 'User', foreign_key: :user_id
 
   # Attributes
   # Actions

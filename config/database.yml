@@ -14,7 +14,7 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV["TM_TEST_DB"] %>
+  database: <%= ENV["TM_DEV_DB"] %>
   host: <%= ENV["TM_DEV_DB_HOST"] %> #Change it to use an external db or a service like RDS
 
 # Warning: The database defined as "test" will be erased and
@@ -27,6 +27,6 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV["TM_TEST_DB"] %>
+  database: <%= ENV["TM_PROD_DB"] %>
   host: <%= ENV["TM_PROD_DB_HOST"] %> #Change it to use an external db or a service like RDS
   port: <%= ENV['TM_PROD_DB_PORT'] %>

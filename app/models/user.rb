@@ -45,8 +45,11 @@ class User < ApplicationRecord
   has_many :tokens, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :user_supervisors
-  has_many :users_supervised, through: :user_supervisors, source: :user
-  has_one :user_supervisor, through: :user_supervisors, source: :supervisor
+  has_many :users_supervised, through: :user_supervisors, source: :supervised
+  has_many :user_supervisor, through: :user_supervisors, source: :supervisor
+
+  # has_many :users_supervised, through: :user_supervisors, class_name: 'User', source: :supervised
+  # has_many :user_supervisor, class_name: 'User', foreign_key: :supervisor_id, through: :user_supervisors, source: :supervisor #, through: :user_supervisors, source: supervisor
 
   # Attributes
   def user?
@@ -66,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def supervised?
-    !user_supervisor.nil?
+    !user_supervisor.empty?
   end
 
   def supervised_by?(user)

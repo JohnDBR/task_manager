@@ -10,7 +10,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def user_supervisor
-    UserSerializer.new(object.user_supervisor) if object.user_supervisor
+    UserSerializer.new(object.user_supervisor.first) if object.supervised?
   end
 
   def users_supervised

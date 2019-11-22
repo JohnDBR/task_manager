@@ -7,7 +7,7 @@ class Users::TasksController < ApplicationController
   def index
     authorize @user
     tasks = @user.tasks
-    render_ok tasks
+    render_ok Task.serialize(tasks)
   end
 
   # GET /users/tasks/:id

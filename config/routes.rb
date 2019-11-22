@@ -7,17 +7,21 @@ Rails.application.routes.draw do
     delete 'sessions', to: 'sessions#destroy'
   end
 
+  namespace :users do
+    resources :tasks, only: %i[show]
+  end
+
   resources :users, only: %i[index show create update destroy] do
+    get 'users_supervised', to: 'supervisors#index'
+    post 'supervisor', to: 'supervisors#create'
     scope module: 'users' do
-      resources :tasks, only: %i[index show create]
-      get 'users_supervised', to: 'supervisors#index'
-      post 'supervisor', to: 'supervisors#create'
+      resources :tasks, only: %i[index create]
       get 'categories/:category/tasks', to: 'tasks/categories#index'
     end
   end
 
   scope module: 'users' do
     resources :tasks, only: %i[update destroy]
-    delete 'users_supervised', to: 'supervisors#destroy'
   end
+  delete 'users_supervised/:id', to: 'supervisors#destroy'
 end

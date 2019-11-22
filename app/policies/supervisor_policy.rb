@@ -5,7 +5,7 @@ class SupervisorPolicy < ApplicationPolicy
   end
 
   def create?
-    user.supervisor? && record.supervised?
+    (user.admin? || user.supervisor?) && (!record.supervised?) # e_user is supervisor?
   end
 
   def destroy?

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :tasks, only: %i[index show create]
       get 'users_supervised', to: 'supervisors#index'
       post 'supervisor', to: 'supervisors#create'
-      get 'categories/:category/tasks', to: 'users/tasks/categories#index'
+      get 'categories/:category/tasks', to: 'tasks/categories#index'
     end
   end
 

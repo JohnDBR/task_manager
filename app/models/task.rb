@@ -39,4 +39,8 @@ class Task < ApplicationRecord
     # start_time = Date.parse(start_time) if start_time
     # end_time = Date.parse(end_time) if end_time
   end
+
+  def self.serialize(collection)
+    ActiveModel::Serializer::CollectionSerializer.new(collection, serializer: TaskSerializer)
+  end
 end

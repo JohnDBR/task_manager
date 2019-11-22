@@ -1,6 +1,6 @@
 # This controller has all the tasks endpoints!
 class Users::TasksController < ApplicationController
-  before_action :set_user, only: %i[index create]
+  before_action :set_user, only: %i[index]
   before_action :set_task, only: %i[show update destroy]
 
   # GET /users/:user_id/tasks
@@ -18,8 +18,8 @@ class Users::TasksController < ApplicationController
 
   # POST /users/:user_id/tasks
   def create
-    authorize @user
-    @task = Task.new(task_params)
+    @task = Task.new({user_id: params[:user_id]}.merge(task_params))
+    authorize @task
     if @task.save
       render_created @task
     else
@@ -29,8 +29,8 @@ class Users::TasksController < ApplicationController
 
   # PUT /tasks/:id
   def update
-    authorize @user
     @task.assign_attributes(task_params)
+    authorize @task
     if @task.save
       render_ok @task
     else
@@ -40,7 +40,7 @@ class Users::TasksController < ApplicationController
 
   # DESTROY /tasks/:id
   def destroy
-    authorize @user
+    authorize @task
     render_ok @task.destroy
   end
 
@@ -55,6 +55,6 @@ class Users::TasksController < ApplicationController
   end
 
   def task_params
-    params.permit(:name, :description, :start_time, :end_time, :high_priority, :category, :completed, :user_id)
+    params.permit(:name, :description, :start_time, :end_time, :high_priority, :category, :completed)
   end
 end

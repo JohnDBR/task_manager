@@ -60,6 +60,8 @@ Style/ClassAndModuleChildren:
   #   - compact
   Exclude:
     - 'config/application.rb'
+    - 'app/channels/application_cable/connection.rb'
+    - 'app/channels/application_cable/channel.rb'
 
 Metrics/LineLength:
   Max: 120

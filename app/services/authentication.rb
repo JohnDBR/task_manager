@@ -21,9 +21,9 @@ class Authentication
   def single_login(credentials, user)
     @user = user
     # Validate that the credentials match!
-    if !@user&.authenticate(credentials[:password])
-      @allowed = false
-      @errors[:error] = 'invalid credentials'
-    end
+    return if @user&.authenticate(credentials[:password])
+
+    @allowed = false
+    @errors[:error] = 'invalid credentials'
   end
 end

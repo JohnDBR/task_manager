@@ -44,6 +44,9 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :tokens, dependent: :destroy
   has_many :tasks, dependent: :destroy
+  has_many :user_supervisors
+  has_many :users_supervised, through: :user_supervisors, source: :user
+  has_one :user_supervisor, through: :user_supervisors, source: :supervisor
 
   # Attributes
   def user?
@@ -60,6 +63,18 @@ class User < ApplicationRecord
 
   def image_url
     url_for(image) if image.attached?
+  end
+
+  def supervised?
+    !user_supervisor.nil?
+  end
+
+  def supervised_by?(user)
+    user_supervisor.id == user.id
+  end
+
+  def supervising_on?(user)
+    users_supervised.include? user
   end
 
   # Actions

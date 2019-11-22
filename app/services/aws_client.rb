@@ -3,11 +3,11 @@ class AwsClient
   
     def initialize
       Aws.config[:credentials] = Aws::Credentials.new(
-                                  ENV['AWS_ACCESS_KEY_ID'], 
-                                  ENV['AWS_SECRET_ACCESS_KEY']
+                                  ENV['TM_S3_ACCESS_KEY_ID'], 
+                                  ENV['TM_S3_SECRET_ACCESS_KEY_ID']
                                 )
-      @sns = Aws::SNS::Resource.new(region: ENV['AWS_REGION'])
-      @topic = @sns.topic(ENV['AWS_SNS_TOPIC'])
+      @sns = Aws::SNS::Resource.new(region: ENV['TM_S3_REGION'])
+      @topic = @sns.topic(ENV['TM_SNS_TOPIC'])
     end
   
     def publish_message(message)

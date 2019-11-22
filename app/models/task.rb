@@ -16,8 +16,6 @@ class Task < ApplicationRecord
   validates :name, :description, :start_time, :end_time, :category, presence: true, on: :create
 
   # Callbacks
-  before_validation :parse_datetime
-
   # Relations
   belongs_to :user
 
@@ -35,12 +33,7 @@ class Task < ApplicationRecord
   end
 
   # Actions
-  def parse_datetime
-    # start_time = Date.parse(start_time) if start_time
-    # end_time = Date.parse(end_time) if end_time
-  end
-
   def self.serialize(collection)
-    ActiveModel::Serializer::CollectionSerializer.new(collection, serializer: TaskSerializer)
+    ActiveModel::Serializer::CollectionSerializer.new(collection, serializer: TasksSerializer)
   end
 end

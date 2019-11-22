@@ -1,7 +1,7 @@
 # This serializer shows the important elements for the user entity and other enttities related
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :middlename, :lastname, :image_url, :birthdate, :gender, :email,
-             :password_digest, :role, :user_supervisor, :users_supervised, :created_at, :updated_at
+             :role, :user_supervisor, :users_supervised, :created_at, :updated_at
 
   has_many :tasks
 

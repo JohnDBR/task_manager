@@ -36,7 +36,7 @@ class Task < ApplicationRecord
 
   # Actions
   def parse_datetime
-    start_time = Date.parse(start_time)
-    end_time = Date.parse(end_time)
+    # start_time = Date.parse(start_time) if start_time
+    # end_time = Date.parse(end_time) if end_time
   end
 end

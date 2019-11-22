@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show create update destroy] do
     scope module: 'users' do
       resources :tasks, only: %i[index show create]
+      get 'users_supervised', to: 'supervisors#index'
+      post 'supervisor', to: 'supervisors#create'
+      get 'categories/:category/tasks', to: 'users/tasks/categories#index'
     end
   end
 
   scope module: 'users' do
     resources :tasks, only: %i[update destroy]
+    delete 'users_supervised', to: 'supervisors#destroy'
   end
 end

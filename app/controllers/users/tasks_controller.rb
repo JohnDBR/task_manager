@@ -55,6 +55,6 @@ class Users::TasksController < ApplicationController
   end
 
   def task_params
-    params.permit(:name, :description, :start_time, :end_time, :high_priority, :category, :completed)
+    params.permit(:name, :description, :start_time, :end_time, :high_priority, :category, :completed, :user_id)
   end
 end

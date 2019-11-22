@@ -20,7 +20,7 @@ class SupervisorsController < ApplicationController
     end
   end
 
-  # DELETE /user_supervised/:id
+  # DELETE /users_supervised/:id
   def destroy
     authorize @us
     render_ok @us.destroy

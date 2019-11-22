@@ -10,6 +10,6 @@ class UserSupervisor < ApplicationRecord
   # Attributes
   # Actions
   def self.serialize(collection)
-    ActiveModel::Serializer::CollectionSerializer.new(collection, serializer: UserSerializer)
+    ActiveModel::Serializer::CollectionSerializer.new(collection, serializer: UsersSupervisedSerializer)
   end
 end

@@ -33,6 +33,9 @@ gem 'active_model_serializers'
 # Use active storage validator to restrict the type of files received
 gem 'activestorage-validator'
 
+# Use aws sdk s4 to perform direct uploads in active storage to AWS S#
+gem 'aws-sdk-s3', require: false
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

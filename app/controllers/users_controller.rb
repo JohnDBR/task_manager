@@ -20,7 +20,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save(context: :account_setup)
-      render_created @user
+      token = @user.create_token
+      token.save
+      render_created LoginSerializer.new(token).as_json
     else
       render_unprocessable_entity @user.errors.messages
     end

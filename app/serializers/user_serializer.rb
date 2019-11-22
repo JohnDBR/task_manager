@@ -16,6 +16,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def users_supervised
-    UserSupervisor.serialize(object.users_supervised) if object.users_supervised.empty?
+    UserSupervisor.serialize(object.users_supervised) unless object.users_supervised.empty?
   end
 end

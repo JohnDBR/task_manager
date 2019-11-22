@@ -16,6 +16,8 @@ class Task < ApplicationRecord
   validates :name, :description, :start_time, :end_time, :category, presence: true, on: :create
 
   # Callbacks
+  after_update :send_done_notification
+  after_create :send_new_task_notification
   # Relations
   belongs_to :user
 
@@ -30,6 +32,19 @@ class Task < ApplicationRecord
 
   def on_task?
     start_time.past? && !end_time.past?
+  end
+
+  def send_done_notification
+    notify("El usuario #{user.name} ha terminado la tarea #{name}")
+  end
+
+  def send_new_task_notification
+    notify("El usuario #{user.name} ha creado la siguiente tarea #{name} para el día #{start_time}")
+  end
+
+  def notify(message)
+    @aws = AwsClient.new
+    @aws.publish_message(message)
   end
 
   # Actions

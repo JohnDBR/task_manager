@@ -77,3 +77,6 @@ gem 'tzinfo-data'
 
 # gem to manage authorization properly
 gem 'pundit'
+
+gem 'aws-sdk-sns'
+

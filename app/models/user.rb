@@ -39,6 +39,7 @@ class User < ApplicationRecord
   # Callbacks
   before_validation :format_downcase
   after_destroy :delete_image
+  after_create :create_supervisor_subscription
 
   # Relations
   has_one_attached :image
@@ -96,6 +97,10 @@ class User < ApplicationRecord
     image.purge_later if image.attached?
   end
 
+  def create_supervisor_subscription
+    @aws = AwsClient.new
+    @aws.subscribe(supervisor_email) if supervisor_email
+  end
   protected
 
   def format_downcase

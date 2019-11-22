@@ -45,7 +45,7 @@ class User < ApplicationRecord
   has_many :tokens, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :user_supervisors
-  has_many :users_supervised, through: :user_supervisors, source: :supervised
+  # has_many :users_supervised, through: :user_supervisors, source: :supervised
   has_many :user_supervisor, through: :user_supervisors, source: :supervisor
 
   # has_many :users_supervised, through: :user_supervisors, class_name: 'User', source: :supervised
@@ -65,7 +65,8 @@ class User < ApplicationRecord
   end
 
   def image_url
-    url_for(image) if image.attached?
+    # url_for(image) if image.attached?
+    Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
   end
 
   def supervised?
@@ -78,6 +79,12 @@ class User < ApplicationRecord
 
   def supervising_on?(user)
     users_supervised.include? user
+  end
+
+  def users_supervised
+    u = user_supervisors.where(supervisor_id: id)
+    pp u 
+    u
   end
 
   # Actions

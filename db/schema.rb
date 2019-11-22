@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_213626) do
     t.date "birthdate"
     t.integer "gender"
     t.string "email"
+    t.string "supervisor_email"
     t.string "password_digest"
     t.integer "role", default: 0
     t.datetime "created_at", null: false

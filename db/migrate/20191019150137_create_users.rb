@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.date :birthdate
       t.integer :gender
       t.string :email
+      t.string :supervisor_email # empanadita!
       t.string :password_digest
       t.integer :role, default: 0
 

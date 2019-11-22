@@ -65,8 +65,8 @@ class User < ApplicationRecord
   end
 
   def image_url
-    # url_for(image) if image.attached?
-    Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
+    url_for(image) if image.attached?
+    # Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
   end
 
   def supervised?

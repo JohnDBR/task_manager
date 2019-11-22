@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save(context: :account_setup)
       render_created @user
     else
-      render_unprocessable_entity @user.errors
+      render_unprocessable_entity @user.errors.messages
     end
   end
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     if @user.save(context: :account_update)
       render_ok @user
     else
-      render_unprocessable_entity @user.errors
+      render_unprocessable_entity @user.errors.messages
     end
   end
 

@@ -26,7 +26,7 @@ class Users::SessionsController < ApplicationController
     if token.save
       render_created LoginSerializer.new(token).as_json
     else
-      render_unprocessable_entity token.errors
+      render_unprocessable_entity token.errors.messages
     end
   end
 

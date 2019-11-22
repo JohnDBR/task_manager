@@ -23,7 +23,7 @@ class Users::TasksController < ApplicationController
     if @task.save
       render_created @task
     else
-      render_unprocessable_entity @task.errors
+      render_unprocessable_entity @task.errors.messages
     end
   end
 
@@ -34,7 +34,7 @@ class Users::TasksController < ApplicationController
     if @task.save
       render_ok @task
     else
-      render_unprocessable_entity @task.errors
+      render_unprocessable_entity @task.errors.messages
     end
   end
 

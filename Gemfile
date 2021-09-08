@@ -51,7 +51,7 @@ gem 'rack-cors'
 
 group :development do
   # replace the standard rails page error with a prettier one
-  gem 'better_errors', '~> 2.5.1'
+  gem 'better_errors', '~> 2.8.0'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
